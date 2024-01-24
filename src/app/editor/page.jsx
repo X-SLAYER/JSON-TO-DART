@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 import AppBar from "../components/AppBar";
 import Controls from "../components/Controls";
 import { useState } from "react";
-import { useCodeEditors } from "../hooks/AppContext";
+import { useCodeEditors } from "../hooks/CodeHook";
 
 const Editor = dynamic(() => import("../components/Editor"), { ssr: false });
 
