@@ -4,21 +4,10 @@ import AceEditor from "react-ace";
 
 // Import themes
 import "ace-builds/src-noconflict/theme-dracula";
-import "ace-builds/src-noconflict/theme-cobalt";
-import "ace-builds/src-noconflict/theme-vibrant_ink";
-import "ace-builds/src-noconflict/theme-monokai";
-import "ace-builds/src-noconflict/theme-tomorrow_night";
-import "ace-builds/src-noconflict/theme-tomorrow_night_blue";
-import "ace-builds/src-noconflict/theme-nord_dark";
-import "ace-builds/src-noconflict/theme-tomorrow_night_eighties";
 
 // Import languages
-import "ace-builds/src-noconflict/mode-javascript";
-import "ace-builds/src-noconflict/mode-html";
-import "ace-builds/src-noconflict/mode-css";
-import "ace-builds/src-noconflict/mode-c_cpp";
-import "ace-builds/src-noconflict/mode-java";
-import "ace-builds/src-noconflict/mode-python";
+import "ace-builds/src-noconflict/mode-json5";
+import "ace-builds/src-noconflict/mode-dart";
 
 // Additonal editor settings tools
 import "ace-builds/src-noconflict/ext-language_tools";
@@ -31,7 +20,7 @@ const Editor = ({ readOnly = false, language = "java" }) => {
       <AceEditor
         mode={language}
         theme={"dracula"}
-        fontSize={16}
+        fontSize={15}
         onChange={onChange}
         name={`editor-${language}`}
         readOnly={readOnly}
@@ -39,7 +28,7 @@ const Editor = ({ readOnly = false, language = "java" }) => {
           width: "100%",
           height: "100%",
         }}
-        editorProps={{ $blockScrolling: true }}
+         editorProps={{ $blockScrolling: true }}
       />
     </div>
   );
