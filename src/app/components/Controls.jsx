@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 export default function Controls({ onControlChange }) {
-  const [controls, setControls] = useState({
+  const initialState = {
     genJson: false,
     genCopyWith: false,
     genToString: false,
@@ -11,21 +11,32 @@ export default function Controls({ onControlChange }) {
     useEquatable: false,
     useDefaultValue: false,
     useRequiredFields: false,
-  });
+  };
+
+  const loadSavedSettings = () => {
+    try {
+      const saved = localStorage.getItem("controlsSettings");
+      return saved ? JSON.parse(saved) : initialState;
+    } catch (error) {
+      console.error("Failed to load settings from localStorage", error);
+      return initialState;
+    }
+  };
 
   const handleCheckboxChange = (event) => {
     const { id, checked } = event.target;
-    console.log(id, checked);
-    setControls((prevControls) => {
-      const newControls = { ...prevControls, [id]: checked };
-      onControlChange(newControls);
-      return newControls;
+    setControls({
+      ...controls,
+      [id]: checked,
     });
   };
 
+  const [controls, setControls] = useState(loadSavedSettings);
+
   useEffect(() => {
+    localStorage.setItem("controlsSettings", JSON.stringify(controls));
     onControlChange(controls);
-  }, []);
+  }, [controls, onControlChange]);
 
   return (
     <div className="mb-4">
@@ -35,7 +46,8 @@ export default function Controls({ onControlChange }) {
             <input
               type="checkbox"
               className="settings-checkbox"
-              id="gen-json"
+              id="genJson"
+              checked={controls.genJson}
               onClick={handleCheckboxChange}
             />
             <span>
@@ -47,7 +59,8 @@ export default function Controls({ onControlChange }) {
             <input
               type="checkbox"
               className="settings-checkbox "
-              id="gen-cpy"
+              checked={controls.genCopyWith}
+              id="genCopyWith"
               onClick={handleCheckboxChange}
             />
             <span>
@@ -59,7 +72,8 @@ export default function Controls({ onControlChange }) {
             <input
               type="checkbox"
               className="settings-checkbox"
-              id="gen-ts"
+              checked={controls.genToString}
+              id="genToString"
               onClick={handleCheckboxChange}
             />
             <span>
@@ -71,7 +85,8 @@ export default function Controls({ onControlChange }) {
             <input
               type="checkbox"
               className="settings-checkbox"
-              id="gen-key"
+              checked={controls.genJsonKeys}
+              id="genJsonKeys"
               onClick={handleCheckboxChange}
             />
             <span>Generate JSON keys</span>
@@ -81,7 +96,8 @@ export default function Controls({ onControlChange }) {
             <input
               type="checkbox"
               className="settings-checkbox"
-              id="use-num"
+              checked={controls.useNumForNumber}
+              id="useNumForNumber"
               onClick={handleCheckboxChange}
             />
             <span>
@@ -95,7 +111,8 @@ export default function Controls({ onControlChange }) {
             <input
               type="checkbox"
               className="settings-checkbox"
-              id="use-serializable"
+              checked={controls.useSerializable}
+              id="useSerializable"
               onClick={handleCheckboxChange}
             />
             <span>
@@ -107,7 +124,8 @@ export default function Controls({ onControlChange }) {
             <input
               type="checkbox"
               className="settings-checkbox"
-              id="use-equatable"
+              checked={controls.useEquatable}
+              id="useEquatable"
               onClick={handleCheckboxChange}
             />
             <span>
@@ -119,7 +137,8 @@ export default function Controls({ onControlChange }) {
             <input
               type="checkbox"
               className="settings-checkbox"
-              id="use-default-value"
+              checked={controls.useDefaultValue}
+              id="useDefaultValue"
               onClick={handleCheckboxChange}
             />
             <span>Use default value </span>
@@ -129,7 +148,8 @@ export default function Controls({ onControlChange }) {
             <input
               type="checkbox"
               className="settings-checkbox"
-              id="use-required-fields"
+              checked={controls.useRequiredFields}
+              id="useRequiredFields"
               onClick={handleCheckboxChange}
             />
             <span>Use required fields</span>
