@@ -12,15 +12,14 @@ import "ace-builds/src-noconflict/mode-dart";
 // Additonal editor settings tools
 import "ace-builds/src-noconflict/ext-language_tools";
 
-const Editor = ({ readOnly = false, language = "java" }) => {
-  const onChange = (newValue) => {};
-
+const Editor = ({ readOnly = false, language = "java", onChange, value }) => {
   return (
     <div className="flex flex-col items-center flex-grow h-full">
       <AceEditor
         mode={language}
         theme={"dracula"}
         fontSize={15}
+        value={value}
         onChange={onChange}
         name={`editor-${language}`}
         readOnly={readOnly}
@@ -28,7 +27,7 @@ const Editor = ({ readOnly = false, language = "java" }) => {
           width: "100%",
           height: "100%",
         }}
-         editorProps={{ $blockScrolling: true }}
+        editorProps={{ $blockScrolling: true }}
       />
     </div>
   );
