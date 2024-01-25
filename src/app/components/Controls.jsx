@@ -51,7 +51,7 @@ export default function Controls({ onControlChange }) {
               onClick={handleCheckboxChange}
             />
             <span>
-              Generate <span className="font-mono">toJson</span> method
+              Generate <span className="font-mono font-bold text-blue-600">toJson</span> method
             </span>
           </label>
 
@@ -64,7 +64,7 @@ export default function Controls({ onControlChange }) {
               onClick={handleCheckboxChange}
             />
             <span>
-              Generate <span className="font-mono">copyWith</span> method
+              Generate <span className="font-mono font-bold text-blue-600">copyWith</span> method
             </span>
           </label>
 
@@ -77,7 +77,7 @@ export default function Controls({ onControlChange }) {
               onClick={handleCheckboxChange}
             />
             <span>
-              Generate <span className="font-mono">toString</span> method
+              Generate <span className="font-mono font-bold text-blue-600">toString</span> method
             </span>
           </label>
 
@@ -101,7 +101,7 @@ export default function Controls({ onControlChange }) {
               onClick={handleCheckboxChange}
             />
             <span>
-              Always use <span className="font-mono">num</span> type for number
+              Always use <span className="font-mono font-bold text-blue-600">num</span> type for number
             </span>
           </label>
         </div>
@@ -116,7 +116,7 @@ export default function Controls({ onControlChange }) {
               onClick={handleCheckboxChange}
             />
             <span>
-              Use <span className="font-mono">JSONSerializable</span>
+              Use <span className="font-mono font-bold text-blue-600">JSONSerializable</span>
             </span>
           </label>
 
@@ -129,7 +129,7 @@ export default function Controls({ onControlChange }) {
               onClick={handleCheckboxChange}
             />
             <span>
-              Use <span className="font-mono">Equatable</span>
+              Use <span className="font-mono font-bold text-blue-600">Equatable</span>
             </span>
           </label>
 
