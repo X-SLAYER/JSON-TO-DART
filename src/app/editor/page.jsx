@@ -6,6 +6,7 @@ import Controls from "../components/Controls";
 import { useState } from "react";
 import { useCodeEditors } from "../hooks/CodeHook";
 import ClassNameTextfield from "../components/ClassNameTextfield";
+import { runQuickType } from "../utils";
 
 const Editor = dynamic(() => import("../components/Editor"), { ssr: false });
 
@@ -25,6 +26,22 @@ const ProgrammingEditor = () => {
       alert("Please enter a class name");
       return;
     }
+    runQuickType(dartClassName, jsonCode, {
+      generateToJson: true,
+      generateCopyWith: true,
+      generateToString: true,
+      useDefaultValue: false,
+      useEquatable: true,
+      useSerializable: false,
+      useNum: false,
+      generateKey: false,
+    })
+      .then((output) => {
+        processAndSetCode(output);
+      })
+      .catch((err) => {
+        alert(err);
+      });
     processAndSetCode(jsonCode);
   };
 
@@ -56,7 +73,8 @@ const ProgrammingEditor = () => {
           </div>
           <button
             onClick={() => {
-              navigator.clipboard.writeText(JSON.stringify(controlsData));
+              const cb = navigator.clipboard;
+              cb.writeText(generateDartClass);
             }}
             type="button"
             className="mt-3 w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
