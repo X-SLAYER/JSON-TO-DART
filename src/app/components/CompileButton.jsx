@@ -1,5 +1,5 @@
 // import { Button } from "@material-ui/core";
-import { useEditor } from "../hooks/AppContext";
+import { useEditor } from "../hooks/CodeHook";
 
 const CompileButton = () => {
   const { language, code, stdIn, setOutput, isSubmitting, setIsSubmitting } =
