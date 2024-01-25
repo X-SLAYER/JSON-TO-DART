@@ -39,7 +39,7 @@ export default function Controls({ onControlChange }) {
   }, [controls, onControlChange]);
 
   return (
-    <div className="mb-4">
+    <div className="mb-2">
       <div id="check-group" className="flex flex-wrap -mx-2">
         <div className="flex flex-col w-full px-2 sm:w-1/2">
           <label className="flex items-center space-x-2">
