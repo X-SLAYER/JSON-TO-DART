@@ -26,16 +26,7 @@ const ProgrammingEditor = () => {
       alert("Please enter a class name");
       return;
     }
-    runQuickType(dartClassName, jsonCode, {
-      generateToJson: true,
-      generateCopyWith: true,
-      generateToString: true,
-      useDefaultValue: false,
-      useEquatable: true,
-      useSerializable: false,
-      useNum: false,
-      generateKey: false,
-    })
+    runQuickType(dartClassName, jsonCode, controlsData)
       .then((output) => {
         processAndSetCode(output);
       })

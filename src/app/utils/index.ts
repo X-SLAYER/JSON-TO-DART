@@ -20,6 +20,7 @@ export type CustomDartOption = {
   useNum: boolean;
   generateKey: boolean;
   generateJsonComment: boolean;
+  useRequiredFields: boolean;
 };
 
 export async function runQuickType(

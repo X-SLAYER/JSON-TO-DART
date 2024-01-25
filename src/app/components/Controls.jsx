@@ -46,8 +46,8 @@ export default function Controls({ onControlChange }) {
             <input
               type="checkbox"
               className="settings-checkbox"
-              id="genJson"
-              checked={controls.genJson}
+              id="generateToJson"
+              checked={controls.generateToJson}
               onClick={handleCheckboxChange}
             />
             <span>
@@ -59,8 +59,8 @@ export default function Controls({ onControlChange }) {
             <input
               type="checkbox"
               className="settings-checkbox "
-              checked={controls.genCopyWith}
-              id="genCopyWith"
+              checked={controls.generateCopyWith}
+              id="generateCopyWith"
               onClick={handleCheckboxChange}
             />
             <span>
@@ -72,8 +72,8 @@ export default function Controls({ onControlChange }) {
             <input
               type="checkbox"
               className="settings-checkbox"
-              checked={controls.genToString}
-              id="genToString"
+              checked={controls.generateToString}
+              id="generateToString"
               onClick={handleCheckboxChange}
             />
             <span>
@@ -85,8 +85,8 @@ export default function Controls({ onControlChange }) {
             <input
               type="checkbox"
               className="settings-checkbox"
-              checked={controls.genJsonKeys}
-              id="genJsonKeys"
+              checked={controls.generateKey}
+              id="generateKey"
               onClick={handleCheckboxChange}
             />
             <span>Generate JSON keys</span>
@@ -96,8 +96,8 @@ export default function Controls({ onControlChange }) {
             <input
               type="checkbox"
               className="settings-checkbox"
-              checked={controls.useNumForNumber}
-              id="useNumForNumber"
+              checked={controls.useNum}
+              id="useNum"
               onClick={handleCheckboxChange}
             />
             <span>
