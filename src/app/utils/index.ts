@@ -23,6 +23,7 @@ export type CustomDartOption = {
   finalProperties: boolean;
   generateFromJson: boolean;
   useFreezed: boolean;
+  useHive: boolean;
 };
 
 export async function runQuickType(

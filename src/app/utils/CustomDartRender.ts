@@ -63,7 +63,7 @@ import {
 } from "quicktype-core/dist/support/Strings";
 import { defined } from "quicktype-core/dist/support/Support";
 import { CustomDartOption } from ".";
-import { generateDartOptions } from "./Generate_dart_options";
+import { generateDartOptions } from "./GeneratDartClass";
 export const dartOptions = {
   nullSafety: new BooleanOption("null-safety", "Null Safety", true),
   justTypes: new BooleanOption("just-types", "Types only", true),
@@ -735,35 +735,11 @@ export class DartRenderer extends ConvenienceRenderer {
         if (maybeNullable === null) {
           return dynamic;
         }
-        const type = this.dartType(t, true);
-        let isAClass = false;
-        let hasDefaultValue =
-          !Array.isArray(type) &&
-          type !== "DateTime" &&
-          this._options.useDefaultValue;
-        let defaultValue = null;
-        if (typeof type == "object") {
-          let isArray = Array.isArray(type);
-          isAClass = !isArray && type["kind"] !== "annotated";
-        }
-        if (hasDefaultValue) {
-          defaultValue = this.getDefaultValueForType(type);
-        }
-        return isAClass
-          ? [
-              dynamic,
-              " == null ? null : ",
-              this.fromDynamicExpression(maybeNullable, dynamic),
-            ]
-          : hasDefaultValue
-          ? [
-              this.fromDynamicExpression(
-                maybeNullable,
-                dynamic,
-                ` ?? ${defaultValue}`
-              ),
-            ]
-          : [this.fromDynamicExpression(maybeNullable, dynamic)];
+        return this.fromDynamicExpression(
+          unionType.isNullable,
+          maybeNullable,
+          dynamic
+        );
       },
       (transformedStringType) => {
         switch (transformedStringType.kind) {

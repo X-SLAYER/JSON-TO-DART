@@ -12,6 +12,7 @@ export default function Controls({ onControlChange }) {
     useDefaultValue: false,
     requiredProperties: false,
     useFreezed: false,
+    useHive: false,
   };
 
   const loadSavedSettings = () => {
@@ -164,9 +165,7 @@ export default function Controls({ onControlChange }) {
             />
             <span>
               Use{" "}
-              <span className="font-mono font-bold text-blue-600">
-                Freezed
-              </span>
+              <span className="font-mono font-bold text-blue-600">Freezed</span>
             </span>
           </label>
 
@@ -174,11 +173,14 @@ export default function Controls({ onControlChange }) {
             <input
               type="checkbox"
               className="settings-checkbox"
-              checked={controls.useDefaultValue}
-              id="useDefaultValue"
+              checked={controls.useHive}
+              id="useHive"
               onClick={handleCheckboxChange}
             />
-            <span>Use default value </span>
+            <span>
+              Use{" "}
+              <span className="font-mono font-bold text-blue-600">HIVE</span>
+            </span>
           </label>
 
           <label className="flex items-center space-x-2">

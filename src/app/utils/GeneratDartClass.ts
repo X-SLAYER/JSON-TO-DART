@@ -56,7 +56,7 @@ export const generateDartOptions = (options: CustomDartOption) => {
     useHive: new BooleanOption(
       "use-hive",
       "Generate annotations for Hive type adapters",
-      false,
+      options.useHive,
       "secondary"
     ),
     useJsonAnnotation: new BooleanOption(
