@@ -1,6 +1,7 @@
-'use client';
+"use client";
 
 import React from "react";
+import Image from "next/image";
 
 const items = [
   { title: "GitHub", href: "https://github.com/X-SLAYER" },
@@ -12,7 +13,7 @@ export default function AppBar() {
     <nav className="bg-white border-gray-200 dark:bg-gray-900">
       <div className="flex flex-wrap items-center justify-between max-w-screen-xl p-4 mx-auto">
         <div className="flex items-center space-x-3 rtl:space-x-reverse">
-          <img src="/logo.png" className="h-10" alt="Logo" />
+          <Image src="/logo.png" width={40} height={40} alt="JSON2DART" />
           <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
             JSON
             <span className="font-mono font-bold text-blue-300">2</span>
@@ -46,7 +47,7 @@ export default function AppBar() {
         <div className="hidden w-full md:block md:w-auto" id="navbar-default">
           <ul className="flex flex-col p-4 mt-4 font-medium border border-gray-100 rounded-lg md:p-0 bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
             {items.map((e) => (
-              <li>
+              <li key={items.indexOf(e)}>
                 <a
                   href={e.href}
                   className="block px-3 py-2 text-blue-300 rounded md:bg-transparent md:p-0"
