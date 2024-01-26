@@ -10,7 +10,9 @@ export default function Controls({ onControlChange }) {
     useSerializable: false,
     useEquatable: false,
     useDefaultValue: false,
-    useRequiredFields: false,
+    requiredProperties: false,
+    useFreezed: false,
+    useHive: false,
   };
 
   const loadSavedSettings = () => {
@@ -46,12 +48,15 @@ export default function Controls({ onControlChange }) {
             <input
               type="checkbox"
               className="settings-checkbox"
-              id="genJson"
-              checked={controls.genJson}
+              id="generateToJson"
+              checked={controls.generateToJson}
               onClick={handleCheckboxChange}
             />
             <span>
-              Generate <span className="font-mono">toJson</span> method
+              Generate{" "}
+              <span className="font-mono font-bold text-blue-600">
+                toJson/FromJson
+              </span>{" "}
             </span>
           </label>
 
@@ -59,12 +64,16 @@ export default function Controls({ onControlChange }) {
             <input
               type="checkbox"
               className="settings-checkbox "
-              checked={controls.genCopyWith}
-              id="genCopyWith"
+              checked={controls.generateCopyWith}
+              id="generateCopyWith"
               onClick={handleCheckboxChange}
             />
             <span>
-              Generate <span className="font-mono">copyWith</span> method
+              Generate{" "}
+              <span className="font-mono font-bold text-blue-600">
+                copyWith
+              </span>{" "}
+              method
             </span>
           </label>
 
@@ -72,12 +81,16 @@ export default function Controls({ onControlChange }) {
             <input
               type="checkbox"
               className="settings-checkbox"
-              checked={controls.genToString}
-              id="genToString"
+              checked={controls.generateToString}
+              id="generateToString"
               onClick={handleCheckboxChange}
             />
             <span>
-              Generate <span className="font-mono">toString</span> method
+              Generate{" "}
+              <span className="font-mono font-bold text-blue-600">
+                toString
+              </span>{" "}
+              method
             </span>
           </label>
 
@@ -85,23 +98,25 @@ export default function Controls({ onControlChange }) {
             <input
               type="checkbox"
               className="settings-checkbox"
-              checked={controls.genJsonKeys}
-              id="genJsonKeys"
+              checked={controls.finalProperties}
+              id="finalProperties"
               onClick={handleCheckboxChange}
             />
-            <span>Generate JSON keys</span>
+            <span>Make all properties final</span>
           </label>
 
           <label className="flex items-center space-x-2">
             <input
               type="checkbox"
               className="settings-checkbox"
-              checked={controls.useNumForNumber}
-              id="useNumForNumber"
+              checked={controls.useNum}
+              id="useNum"
               onClick={handleCheckboxChange}
             />
             <span>
-              Always use <span className="font-mono">num</span> type for number
+              Use{" "}
+              <span className="font-mono font-bold text-blue-600">num</span>{" "}
+              type for number
             </span>
           </label>
         </div>
@@ -116,7 +131,10 @@ export default function Controls({ onControlChange }) {
               onClick={handleCheckboxChange}
             />
             <span>
-              Use <span className="font-mono">JSONSerializable</span>
+              Use{" "}
+              <span className="font-mono font-bold text-blue-600">
+                JSONSerializable
+              </span>
             </span>
           </label>
 
@@ -129,7 +147,10 @@ export default function Controls({ onControlChange }) {
               onClick={handleCheckboxChange}
             />
             <span>
-              Use <span className="font-mono">Equatable</span>
+              Use{" "}
+              <span className="font-mono font-bold text-blue-600">
+                Equatable
+              </span>
             </span>
           </label>
 
@@ -137,19 +158,36 @@ export default function Controls({ onControlChange }) {
             <input
               type="checkbox"
               className="settings-checkbox"
-              checked={controls.useDefaultValue}
-              id="useDefaultValue"
+              checked={controls.useFreezed}
+              id="useFreezed"
               onClick={handleCheckboxChange}
             />
-            <span>Use default value </span>
+            <span>
+              Use{" "}
+              <span className="font-mono font-bold text-blue-600">Freezed</span>
+            </span>
           </label>
 
           <label className="flex items-center space-x-2">
             <input
               type="checkbox"
               className="settings-checkbox"
-              checked={controls.useRequiredFields}
-              id="useRequiredFields"
+              checked={controls.useHive}
+              id="useHive"
+              onClick={handleCheckboxChange}
+            />
+            <span>
+              Use{" "}
+              <span className="font-mono font-bold text-blue-600">HIVE</span>
+            </span>
+          </label>
+
+          <label className="flex items-center space-x-2">
+            <input
+              type="checkbox"
+              className="settings-checkbox"
+              checked={controls.requiredProperties}
+              id="requiredProperties"
               onClick={handleCheckboxChange}
             />
             <span>Use required fields</span>
