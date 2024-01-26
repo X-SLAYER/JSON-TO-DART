@@ -1,14 +1,11 @@
-// import express from "express";
-import {
+ import {
   InputData,
   jsonInputForTargetLanguage,
   quicktype,
 } from "quicktype-core";
 import { CustomDartTargetLanguage } from "./CustomDartRender";
 
-// const app = express();
-// app.use(express.urlencoded({ extended: false }));
-// app.use(express.json());
+ 
 
 export type CustomDartOption = {
   generateToString: boolean;
@@ -20,7 +17,12 @@ export type CustomDartOption = {
   useNum: boolean;
   generateKey: boolean;
   generateJsonComment: boolean;
-  useRequiredFields: boolean;
+  requiredProperties: boolean;
+  useNullSafety: boolean;
+  useJustTypes: boolean;
+  finalProperties: boolean;
+  generateFromJson: boolean;
+  useFreezed: boolean;
 };
 
 export async function runQuickType(
