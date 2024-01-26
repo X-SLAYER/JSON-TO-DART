@@ -57,7 +57,6 @@ export default function Controls({ onControlChange }) {
               <span className="font-mono font-bold text-blue-600">
                 toJson/FromJson
               </span>{" "}
-              methods
             </span>
           </label>
 
@@ -115,7 +114,7 @@ export default function Controls({ onControlChange }) {
               onClick={handleCheckboxChange}
             />
             <span>
-              Always use{" "}
+              Use{" "}
               <span className="font-mono font-bold text-blue-600">num</span>{" "}
               type for number
             </span>
