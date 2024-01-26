@@ -1,14 +1,14 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import AppBar from "../components/AppBar";
-import Controls from "../components/Controls";
+import AppBar from "./components/AppBar";
+import Controls from "./components/Controls";
 import { useState } from "react";
-import { useCodeEditors } from "../hooks/CodeHook";
-import ClassNameTextfield from "../components/ClassNameTextfield";
-import { runQuickType } from "../utils";
+import { useCodeEditors } from "./hooks/CodeHook";
+import ClassNameTextfield from "./components/ClassNameTextfield";
+import { runQuickType } from "./utils";
 
-const Editor = dynamic(() => import("../components/Editor"), { ssr: false });
+const Editor = dynamic(() => import("./components/Editor"), { ssr: false });
 
 const ProgrammingEditor = () => {
   const [controlsData, setControlsData] = useState({});

@@ -1,3 +1,5 @@
+'use client';
+
 import React from "react";
 
 const items = [
@@ -12,7 +14,9 @@ export default function AppBar() {
         <div className="flex items-center space-x-3 rtl:space-x-reverse">
           <img src="/logo.png" className="h-10" alt="Logo" />
           <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-            Json to Dart
+            JSON
+            <span className="font-mono font-bold text-blue-300">2</span>
+            <span className="font-mono font-bold text-white">DART</span>
           </span>
         </div>
         <button
@@ -45,7 +49,7 @@ export default function AppBar() {
               <li>
                 <a
                   href={e.href}
-                  className="block px-3 py-2 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500"
+                  className="block px-3 py-2 text-blue-300 rounded md:bg-transparent md:p-0"
                   target="_blank"
                 >
                   {e.title}
