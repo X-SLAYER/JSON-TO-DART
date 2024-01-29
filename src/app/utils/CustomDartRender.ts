@@ -916,7 +916,7 @@ export class DartRenderer extends ConvenienceRenderer {
 
       this.emitLine(
         this._options.finalProperties ? "final " : "",
-        this.dartType(p.type, true),
+        this.dartType(p.type, true, !this._options.requiredProperties),
         " ",
         name,
         ";"
