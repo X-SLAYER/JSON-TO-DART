@@ -1258,7 +1258,11 @@ export class DartRenderer extends ConvenienceRenderer {
   protected emitSourceStructure(): void {
     this.emitFileHeader();
 
-    if (!this._options.justTypes && !this._options.codersInClass) {
+    if (
+      !this._options.justTypes &&
+      !this._options.codersInClass &&
+      this._options.generateToJson
+    ) {
       this._emitTopLvlEncoderDecoder();
     }
 
