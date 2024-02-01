@@ -13,7 +13,7 @@ import "ace-builds/src-noconflict/mode-dart";
 // Additonal editor settings tools
 import "ace-builds/src-noconflict/ext-language_tools";
 
-// Additional the beautify extension
+// Additional the beautify library
 import { js_beautify } from "js-beautify";
 
 const Editor = ({ readOnly = false, language = "java", onChange, value }) => {
@@ -27,9 +27,9 @@ const Editor = ({ readOnly = false, language = "java", onChange, value }) => {
         "text"
       );
       const beautifiedText = js_beautify(text, {
-        indent_size: 4,
+        indent_size: 2,
         space_in_empty_paren: true,
-        e4x: true,
+        e4x: false,
       });
       const editor = editorRef.current.editor;
       editor.setValue(beautifiedText, -1);
