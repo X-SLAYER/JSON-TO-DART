@@ -492,12 +492,15 @@ export class DartRenderer extends ConvenienceRenderer {
     if (this._options.useHive) {
       this.emitLine("import 'package:hive/hive.dart';");
     }
+    generateToJson;
     if (this._options.useJsonAnnotation && !this._options.useFreezed) {
       // The freezed annotatation import already provides the import for json_annotation
       this.emitLine("import 'package:json_annotation/json_annotation.dart';");
     }
 
-    this.emitLine("import 'dart:convert';");
+    if (this._options.generateToJson) {
+      this.emitLine("import 'dart:convert';");
+    }
     if (
       this._options.useFreezed ||
       this._options.useHive ||
@@ -537,10 +540,7 @@ export class DartRenderer extends ConvenienceRenderer {
     forceNullable = false
   ): Sourcelike {
     const nullable =
-      forceNullable ||
-      (this._options.nullSafety &&
-        t.isNullable &&
-        !this._options.requiredProperties);
+      forceNullable || (t.isNullable && !this._options.requiredProperties);
     const withNullable = (s: Sourcelike): Sourcelike =>
       nullable ? [s, "?"] : s;
     return matchType<Sourcelike>(
@@ -596,11 +596,7 @@ export class DartRenderer extends ConvenienceRenderer {
     list: Sourcelike,
     mapper: Sourcelike
   ): Sourcelike {
-    if (
-      this._options.nullSafety &&
-      isNullable &&
-      !this._options.requiredProperties
-    ) {
+    if (isNullable && !this._options.requiredProperties) {
       return [
         list,
         " == null ? [] : ",
@@ -622,11 +618,7 @@ export class DartRenderer extends ConvenienceRenderer {
     map: Sourcelike,
     valueMapper: Sourcelike
   ): Sourcelike {
-    if (
-      this._options.nullSafety &&
-      isNullable &&
-      !this._options.requiredProperties
-    ) {
+    if (isNullable && !this._options.requiredProperties) {
       return [
         "Map.from(",
         map,
@@ -653,11 +645,7 @@ export class DartRenderer extends ConvenienceRenderer {
     classType: ClassType,
     dynamic: Sourcelike
   ) {
-    if (
-      this._options.nullSafety &&
-      isNullable &&
-      !this._options.requiredProperties
-    ) {
+    if (isNullable && !this._options.requiredProperties) {
       return [
         dynamic,
         " == null ? null : ",
@@ -795,7 +783,6 @@ export class DartRenderer extends ConvenienceRenderer {
         ),
       (_classType) => {
         if (
-          this._options.nullSafety &&
           (_classType.isNullable || isNullable) &&
           !this._options.requiredProperties
         ) {
@@ -837,7 +824,6 @@ export class DartRenderer extends ConvenienceRenderer {
         switch (transformedStringType.kind) {
           case "date-time":
             if (
-              this._options.nullSafety &&
               !this._options.requiredProperties &&
               (transformedStringType.isNullable || isNullable)
             ) {
@@ -846,7 +832,6 @@ export class DartRenderer extends ConvenienceRenderer {
             return [dynamic, ".toIso8601String()"];
           case "date":
             if (
-              this._options.nullSafety &&
               !this._options.requiredProperties &&
               (transformedStringType.isNullable || isNullable)
             ) {
@@ -888,8 +873,8 @@ export class DartRenderer extends ConvenienceRenderer {
       this.forEachClassProperty(c, "none", (name, _, prop) => {
         const required =
           this._options.requiredProperties ||
-          (this._options.nullSafety &&
-            (!prop.type.isNullable || !prop.isOptional));
+          !prop.type.isNullable ||
+          !prop.isOptional;
         this.emitLine(required ? "required " : "", "this.", name, ",");
       });
     });
@@ -1135,8 +1120,8 @@ export class DartRenderer extends ConvenienceRenderer {
           this.forEachClassProperty(c, "none", (name, jsonName, prop) => {
             const required =
               this._options.requiredProperties ||
-              (this._options.nullSafety &&
-                (!prop.type.isNullable || !prop.isOptional));
+              !prop.type.isNullable ||
+              !prop.isOptional;
             if (this._options.useJsonAnnotation) {
               this.classPropertyCounter++;
               this.emitLine(`@JsonKey(name: "${jsonName}")`);
