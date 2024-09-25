@@ -11,7 +11,7 @@
   "dependencies": {
     "cookie-cutter": "^0.2.0",
     "js-beautify": "^1.14.11",
-    "next": "14.1.1",
+    "next": "14.2.10",
     "quicktype-core": "^23.0.81",
     "react": "^18",
     "react-ace": "^10.1.0",
